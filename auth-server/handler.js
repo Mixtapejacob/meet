@@ -6,7 +6,7 @@ const SCOPES = [
   "https://www.googleapis.com/auth/calendar.events.public.readonly",
 ];
 const { CLIENT_SECRET, CLIENT_ID, CALENDAR_ID } = process.env;
-const redirect_uris = ["http://127.0.0.1:5500"];
+const redirect_uris = ["https://mixtapejacob.github.io/meet"];
 
 const oAuth2Client = new google.auth.OAuth2(
   CLIENT_ID,
@@ -35,7 +35,7 @@ module.exports.getAuthURL = async () => {
 };
 
 module.exports.getAccessToken = async (event) => {
-  const code = event.pathParameters?.code;
+  const code = decodeURIComponent(event.pathParameters.code);
   if (!code) {
     throw new Error("Missing authorization code");
   }
