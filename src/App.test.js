@@ -1,8 +1,16 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+const { render } = require("@testing-library/react");
+const { default: App } = require("./App");
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+describe("<App>", () => {
+
+  test('renders list of events', () => {
+    const AppDOM = render(<App />).container.firstChild;
+    expect(AppDOM.querySelector('#event-list')).toBeInTheDocument();
+  });
+  
+  test('render CitySearch', () => {
+    const AppDOM = render(<App />).container.firstChild;
+    expect(AppDOM.querySelector('#city-search')).toBeInTheDocument();
+  });
+  
+})
