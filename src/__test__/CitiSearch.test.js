@@ -43,7 +43,7 @@ describe('<CitySearch /> component', () => {
     
         await user.click(BerlinGermanySuggestion);
     
-        expect(cityTextBox).toHaveValue("Berlin");
+        expect(cityTextBox).toHaveValue("Berlin, Germany");
       });
     
 });
