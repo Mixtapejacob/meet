@@ -1,16 +1,19 @@
-const { render } = require("@testing-library/react");
-const { default: App } = require("./App");
+import { render, screen, waitFor, within } from "@testing-library/react";
+import App from "./App";
 
-describe("<App>", () => {
 
-  test('renders list of events', () => {
-    const AppDOM = render(<App />).container.firstChild;
-    expect(AppDOM.querySelector('#event-list')).toBeInTheDocument();
+
+
+describe("<App /> component", () => {
+  test("List of events", () => {
+    render(<App />);
+    const component = screen.getByRole("event-list");
+    expect(component).toBeDefined();
   });
-  
-  test('render CitySearch', () => {
-    const AppDOM = render(<App />).container.firstChild;
-    expect(AppDOM.querySelector('#city-search')).toBeInTheDocument();
+
+  test("city search", () => {
+    render(<App />);
+    const component = screen.getByRole("city-search");
+    expect(component).toBeDefined();
   });
-  
-})
+});

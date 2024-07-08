@@ -1,19 +1,45 @@
-import { render } from '@testing-library/react';
-import Event from '../components/Event';
-import { getEvents } from '../api';
-import mockData from '../mockData';
+import { render } from "@testing-library/react";
+import Event from "../components/Event";
+import { getEvents } from "../api";
+import mockData from "../mockData";
 
-describe('<EventList /> component', () => {
 
-  test('has an element with "list" role', () => {
-    const EventListComponent = render(<Event event={mockData[0]}  />);
-    expect(EventListComponent.queryByText(mockData[0].location)).toBeInTheDocument();
+describe("<Event /> component", () => {
+  let EventComponent;
+  let allEvents;
+
+  beforeAll(async () => {
+    allEvents = await getEvents();
+  });
+  beforeEach(() => {
+    EventComponent = render(<Event event={mockData[0]} />);
   });
 
-  test('renders correct number of events', async () => {
-    const allEvents = await getEvents(); 
-    const EventListComponent  = render(<Event />);
-expect(EventListComponent.queryByText("Show details")).toBeInTheDocument();
+  test("Creates event title", () => {
+    expect(EventComponent.queryByText(mockData[0].summary)).toBeInTheDocument();
   });
+
+  test("creates event location", () => {
+    expect(
+      EventComponent.queryByText(mockData[0].location)
+    ).toBeInTheDocument();
+  });
+
+  test("Start time", () => {
+    expect(
+      EventComponent.queryByText(mockData[0].start?.dateTime)
+    ).toBeInTheDocument();
+  });
+
+  test("End time", () => {
+    expect(
+      EventComponent.queryByText(mockData[0].end?.dateTime)
+    ).toBeInTheDocument();
+  });
+
+  test("Button text", () => {
+    expect(EventComponent.queryByText("Show")).toBeInTheDocument();
+  });
+
 
 });

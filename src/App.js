@@ -1,15 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
-import EventList from './components/EventList';
-import CitySearch from './components/CitySearch';
+import CitySearch from "./components/CitySearch";
+import EventList from "./components/EventList";
+import "./App.css";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <CitySearch />
-      <EventList events={[{}, {}, {}]} />
+      <EventList />
     </div>
   );
-}
+};
 
 export default App;
