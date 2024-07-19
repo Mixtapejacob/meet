@@ -1,7 +1,7 @@
 import { render, fireEvent } from "@testing-library/react";
 import Event from "../components/Event";
+import mockData from "../mock-data";
 import { getEvents } from "../api";
-import mockData from "../mockData";
 
 describe("<Event /> component", () => {
   let EventComponent;
