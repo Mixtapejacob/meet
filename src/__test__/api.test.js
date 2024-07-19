@@ -1,5 +1,6 @@
 import { extractLocations, getEvents } from '../api';
-import mockData from '../mockData';
+import mockData from '../mock-data';
+
 
 describe('extractLocations', () => {
   it('should extract unique locations from events', () => {

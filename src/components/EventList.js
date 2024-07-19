@@ -1,3 +1,5 @@
+// src/components/EventList.js
+
 import Event from "./Event";
 import NumberOfEvents from "./NumberOfEvent";
 
