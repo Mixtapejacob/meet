@@ -28,7 +28,7 @@ export const getEvents = async () => {
   if (token) {
     removeQuery();
     const url =
-      "" +
+      "https://kfh0khi764.execute-api.eu-central-1.amazonaws.com/dev/api" +
       "/" +
       token;
     const response = await fetch(url);
@@ -49,7 +49,7 @@ export const getAccessToken = async () => {
     const code = await searchParams.get("code");
     if (!code) {
       const response = await fetch(
-       ""
+       "https://kfh0khi764.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url"
       );
       const result = await response.json();
       const { authUrl } = result;
@@ -78,7 +78,7 @@ const removeQuery = () => {
 const getToken = async (code) => {
   const encodeCode = encodeURIComponent(code);
   const response = await fetch(
-    "" +
+    "https://kfh0khi764.execute-api.eu-central-1.amazonaws.com/dev/api/get-events" +
       "/" +
       encodeCode
   );
