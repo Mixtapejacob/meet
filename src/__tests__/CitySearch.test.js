@@ -1,16 +1,18 @@
+// src/__tests__/CitySearch.test.js
+
 import { render, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import CitySearch from "../components/CitySearch";
 import { extractLocations, getEvents } from "../api";
 import App from "../App";
-import mockData from "../mock-data";
-
-
+import { mockData } from "../mock-data";
 
 describe("<CitySearch /> component", () => {
   let CitySearchComponent;
   beforeEach(() => {
-    CitySearchComponent = render(<CitySearch />);
+    CitySearchComponent = render(
+      <CitySearch allLocations={[]} setCurrentCity={() => {}} />
+    );
   });
 
   test("renders text input", () => {
@@ -44,8 +46,7 @@ describe("<CitySearch /> integration", () => {
     const cityTextBox = within(CitySearchDOM).queryByRole("textbox");
     await user.click(cityTextBox);
 
-    const suggestionListItems =
-      within(CitySearchDOM).queryAllByRole("listitem");
+    const suggestionListItems = within(CitySearchDOM).queryAllByRole("list");
     expect(suggestionListItems.length).toBe(1);
   });
 

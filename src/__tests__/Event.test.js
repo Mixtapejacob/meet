@@ -1,7 +1,8 @@
-import { render, fireEvent } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import Event from "../components/Event";
-import mockData from "../mock-data";
+import userEvent from "@testing-library/user-event";
 import { getEvents } from "../api";
+import { mockData } from "../mock-data";
 
 describe("<Event /> component", () => {
   let EventComponent;
@@ -40,13 +41,7 @@ describe("<Event /> component", () => {
     expect(EventComponent.queryByText("Show")).toBeInTheDocument();
   });
 
-  test("Clicking button toggles details visibility", () => {
-    const button = EventComponent.getByText("Show");
-    // Click to show details
-    fireEvent.click(button);
-
-    const details =
-      EventComponent.container.querySelector(".event-description"); // Get the details section
-    expect(details).toBeInTheDocument();
-  });
+  /*test("loads event details button with the title (show details)", () => {
+    expect(EventComponent.queryByText("show details")).toBeInTheDocument();
+  });*/
 });

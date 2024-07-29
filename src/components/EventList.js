@@ -1,20 +1,17 @@
 // src/components/EventList.js
 
 import Event from "./Event";
-import NumberOfEvents from "./NumberOfEvent";
-
+import NumberOfEvents from "./NumberOfEvents";
 
 const EventList = ({ events }) => {
   return (
-    <> 
-    <NumberOfEvents />
-    <ul id="event-list" role="event-list">
-      {events
-        ? events.map((event) => <Event key={event.id} event={event} />)
-        : null}
-    </ul>
+    <>
+      <ul id="event-list" role="event-list">
+        {events
+          ? events.map((event) => <Event key={event.id} event={event} />)
+          : null}
+      </ul>
     </>
-   
   );
 };
 

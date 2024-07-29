@@ -2,8 +2,9 @@
 
 import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import App from "./App";
-import mockData from "./mock-data";
+import { getEvents } from "../api";
+import App from "../App";
+import { mockData } from "../mock-data";
 
 describe("<App /> component", () => {
   test("List of events", () => {
