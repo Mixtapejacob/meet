@@ -6,7 +6,7 @@ import NumberOfEvents from "./components/NumberOfEvents";
 import { getEvents, extractLocations } from "./api";
 import "./App.css";
 import { mockData } from "./mock-data";
-import { InfoAlert, ErrorAlert, WarningAlert } from "./components/Alert";
+import { InfoAlert, ErrorAlert } from "./components/Alert";
 import CityEventsChart from "./components/CityEventsChart";
 import EventGenresChart from "./components/EventGenresChart";
 
@@ -17,18 +17,7 @@ const App = () => {
   const [currentCity, setCurrentCity] = useState("See all cities");
   const [infoAlert, setInfoAlert] = useState("");
   const [errorAlert, setErrorAlert] = useState("");
-  const [warningAlert, setWarningAlert] = useState("");
 
-  useEffect(() => {
-    if (navigator.onLine) {
-      setWarningAlert("");
-    } else {
-      setWarningAlert(
-        "You are offline, all events are being loaded from cache."
-      );
-    }
-    fetchData();
-  }, [currentCity, currentNOE]);
   const fetchData = async () => {
     const allEvents = mockData;
     const filteredEvents =
@@ -48,7 +37,6 @@ const App = () => {
       <div className="alerts-container">
         {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}{" "}
         {errorAlert.length ? <ErrorAlert text={errorAlert} /> : null}
-        {warningAlert.length ? <WarningAlert text={warningAlert} /> : null}
       </div>
       <CitySearch
         allLocations={allLocations}
@@ -59,10 +47,6 @@ const App = () => {
         setCurrentNOE={setCurrentNOE}
         setErrorAlert={setErrorAlert}
       />
-      <div className="charts-container">
-        <CityEventsChart allLocations={allLocations} events={events} />
-        <EventGenresChart allLocations={allLocations} events={events} />
-      </div>
       <EventList events={events} />
     </div>
   );
