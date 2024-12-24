@@ -20,10 +20,8 @@ const App = () => {
   const [warningAlert, setWarningAlert] = useState("");
 
   useEffect(() => {
-    if (navigator.onLine) {
-      setWarningAlert("");
-    } else {
-      setWarningAlert(
+    if (!navigator.onLine) {
+      setErrorAlert(
         "You are offline, all events are being loaded from cache."
       );
     }
